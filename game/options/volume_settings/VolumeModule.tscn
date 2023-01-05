@@ -11,26 +11,25 @@
 script = ExtResource( 3 )
 
 [node name="H" parent="." index="0" instance=ExtResource( 1 )]
-margin_top = 279.0
-margin_right = 1024.0
-margin_bottom = 299.0
+margin_top = 106.0
+margin_right = 448.0
+margin_bottom = 128.0
 
 [node name="BusLabel" type="Label" parent="H" index="0"]
-margin_right = 916.0
-margin_bottom = 20.0
+margin_right = 396.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 valign = 1
 
 [node name="Reset" parent="H" index="1" instance=ExtResource( 2 )]
-margin_left = 920.0
-margin_right = 970.0
+margin_left = 400.0
+margin_right = 422.0
 
 [node name="Mute" parent="H" index="2" instance=ExtResource( 4 )]
-margin_left = 974.0
-margin_right = 1024.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 50, 0 )
+margin_left = 426.0
+margin_right = 448.0
+rect_min_size = Vector2( 22, 0 )
 size_flags_vertical = 3
 toggle_mode = true
 expand_icon = true
@@ -42,9 +41,9 @@ expand = true
 stretch_mode = 6
 
 [node name="VolumeSlider" parent="." index="1" instance=ExtResource( 6 )]
-margin_top = 304.0
-margin_right = 1024.0
-margin_bottom = 320.0
+margin_top = 133.0
+margin_right = 448.0
+margin_bottom = 149.0
 max_value = 2.0
 step = 0.1
 value = 1.0
