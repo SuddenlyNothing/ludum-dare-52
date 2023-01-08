@@ -28,7 +28,7 @@ var ground_friction: float = max_move_speed / ground_friction_time
 var max_climb_speed: float = 150
 var climb_acceleration_time: float = 0.1
 var climb_acceleration: float = max_climb_speed / climb_acceleration_time
-var climb_friction_time: float = 0.2
+var climb_friction_time: float = 0.1
 var climb_friction: float = max_climb_speed / climb_friction_time
 var climb_jump_force: float = 1000
 #var climb_jump_friction_time: float = 2.0
@@ -47,6 +47,8 @@ var up := Vector2.UP
 var stopped_jump := false
 var wall_dir := Vector2.RIGHT
 
+var queue_animation := "idle"
+
 onready var flip := $Flip
 onready var anim_sprite := $Flip/AnimatedSprite
 onready var coyote_timer := $CoyoteTimer
@@ -55,6 +57,10 @@ onready var wall_jump_timer := $WallJumpTimer
 onready var save_jump_casts := $SaveJumpCasts
 onready var prevent_cling_cast := $PreventClingCast
 onready var wall_cling_stay_timer := $WallClingStayTimer
+
+
+#func _ready() -> void:
+#	Engine.time_scale = 0.3
 
 
 func _process(delta: float) -> void:
@@ -243,6 +249,24 @@ func stop_jump() -> void:
 
 
 func play_anim(anim : String) -> void:
-	if anim_sprite.animation == anim:
+	if anim == "jump" and anim_sprite.animation == anim:
+		anim_sprite.frame = 1
+	if anim == "fall":
+		anim_sprite.animation = "jump"
+		anim_sprite.frame = 4
+		return
+	if anim_sprite.animation == "land" and (anim == "idle" or anim == "walk"):
+		queue_animation = anim
 		return
 	anim_sprite.play(anim)
+
+
+func _on_AnimatedSprite_animation_finished() -> void:
+	if anim_sprite.animation == "land":
+		anim_sprite.play(queue_animation)
+
+
+func _on_AnimatedSprite_frame_changed() -> void:
+	if anim_sprite.animation == "land" and queue_animation == "walk" and \
+			anim_sprite.frame >= 1:
+		anim_sprite.play(queue_animation)

@@ -104,6 +104,8 @@ func _exit_state(old_state, new_state: String) -> void:
 		states.fall:
 			if new_state != states.jump:
 				parent.reset_air_jumps()
+			if new_state == states.idle or new_state == states.walk:
+				parent.play_anim("land")
 		states.wall_cling:
 			if new_state == states.fall:
 				if parent.velocity.y < 0:
