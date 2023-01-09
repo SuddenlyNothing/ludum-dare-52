@@ -12,6 +12,7 @@ func _on_Fireball_body_entered(body: Node) -> void:
 	if not body.is_in_group("player"):
 		return
 	body.hit(sign(dir.x))
+	hide()
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	$ImpactSFX.play()
 

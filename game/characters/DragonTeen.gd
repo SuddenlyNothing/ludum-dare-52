@@ -8,7 +8,8 @@ const Fireball := preload("res://characters/Fireball.tscn")
 
 var target: Node2D
 
-var speed := 160
+var speed := 400
+var swiping_speed := 200
 var in_range := false
 var idle_velocity := Vector2()
 var flap_force := 300
@@ -126,10 +127,14 @@ func play_anim(anim: String) -> void:
 
 func move_swipe(delta: float) -> void:
 	set_facing()
-	position += swipe_pos.global_position.direction_to(target.position) * \
-			speed * delta
 	if swipe_pos.global_position.distance_squared_to(target.position) < 20:
 		anim_sprite.play("swipe")
+	elif anim_sprite.animation != "swipe":
+		position += swipe_pos.global_position.direction_to(target.position) * \
+				speed * delta
+	else:
+		position += swipe_pos.global_position.direction_to(target.position) * \
+				swiping_speed * delta
 
 
 func move_idle(delta: float) -> void:

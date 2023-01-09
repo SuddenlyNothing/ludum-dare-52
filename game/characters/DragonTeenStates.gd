@@ -50,10 +50,10 @@ func _enter_state(new_state: String, old_state) -> void:
 	match new_state:
 		states.evolve:
 			parent.play_anim("evolve")
-			parent.idle_wait_timer.start()
-			parent.idle_velocity = Vector2()
 		states.idle:
 			parent.play_anim("idle")
+			parent.idle_wait_timer.start()
+			parent.idle_velocity = Vector2()
 		states.swipe:
 			parent.play_anim("idle")
 			parent.in_range = false
@@ -80,7 +80,7 @@ func _exit_state(old_state, new_state: String) -> void:
 		states.idle:
 			pass
 		states.swipe:
-			pass
+			parent.idle_velocity = Vector2()
 		states.fireball:
 			pass
 		states.down:
