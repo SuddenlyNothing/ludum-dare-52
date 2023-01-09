@@ -53,6 +53,7 @@ func _enter_state(new_state: String, old_state) -> void:
 			parent.play_anim("down")
 			parent.down_sfx.play()
 			parent.emit_signal("downed")
+			parent.fed = false
 		states.death:
 			parent.play_anim("death")
 			parent.death_sfx.play()

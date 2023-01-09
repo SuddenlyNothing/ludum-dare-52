@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://characters/FightManager.gd" type="Script" id=1]
 [ext_resource path="res://utils/InputFormatLabel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/ui/health/dragon_health_progress.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/health/dragon_health_under.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -63,13 +65,18 @@ margin_bottom = 16.0
 text = "Baby Dragon"
 align = 1
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Control/M/V"]
+[node name="HealthBar" type="TextureProgress" parent="CanvasLayer/Control/M/V"]
+margin_left = 42.0
 margin_top = 20.0
-margin_right = 308.0
+margin_right = 266.0
 margin_bottom = 36.0
+size_flags_horizontal = 4
 max_value = 1.0
 step = 0.0
 value = 1.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+texture_progress_offset = Vector2( 2, 7 )
 
 [node name="Hint" parent="CanvasLayer/Control/M/V" instance=ExtResource( 2 )]
 visible = false
@@ -87,7 +94,7 @@ anims/RESET = SubResource( 2 )
 anims/flash = SubResource( 1 )
 
 [node name="DeathDelayTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="DownTimer" type="Timer" parent="."]

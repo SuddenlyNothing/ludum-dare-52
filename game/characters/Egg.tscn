@@ -1,0 +1,127 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://assets/sprites/dragon_baby/baby_hatch.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/dragon_baby/baby_idle.png" type="Texture" id=2]
+[ext_resource path="res://characters/Egg.gd" type="Script" id=3]
+[ext_resource path="res://assets/sprites/dragon_baby/egg_wiggle.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 80, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 160, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 240, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 320, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 400, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 480, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 560, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 640, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 2 )
+region = Rect2( 80, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 2 )
+region = Rect2( 160, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 2 )
+region = Rect2( 240, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 4 )
+region = Rect2( 160, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 4 )
+region = Rect2( 192, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 4 )
+region = Rect2( 224, 0, 32, 36 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 4 )
+region = Rect2( 256, 0, 32, 36 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": false,
+"name": "hatch",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "wiggle",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=11]
+radius = 12.0
+
+[node name="Egg" type="KinematicBody2D" groups=["hittable"]]
+collision_layer = 4
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "hatch"
+speed_scale = 2.0
+offset = Vector2( 1, -18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, -12 )
+shape = SubResource( 11 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

@@ -12,6 +12,7 @@ var friction: float = (charge_speed * charge_speed) / (stop_dist * 2)
 var charge_dir := -1
 var snap := Vector2.DOWN * 12
 var charging := false
+var fed = false
 
 var knockouts_remaining := 2
 var max_health := 2
@@ -66,6 +67,7 @@ func play_anim(anim: String) -> void:
 
 
 func feed() -> void:
+	fed = true
 	anim_sprite.play("eat")
 
 
@@ -75,7 +77,6 @@ func wake() -> void:
 
 
 func hit(dir: int) -> void:
-	hurt_sfx.play()
 	var t := create_tween()
 	t.tween_property(anim_sprite.get_material(), "shader_param/hit_strength",
 			0.0, 0.5).from(1.0)
@@ -89,8 +90,14 @@ func hit(dir: int) -> void:
 				dragon_baby_states.call_deferred("set_state", "down")
 			health = max_health
 			knockouts_remaining -= 1
+			down_sfx.play()
 		else:
 			dragon_baby_states.call_deferred("set_state", "death")
+			death_sfx.play()
+	else:
+		hurt_sfx.play()
+		if not fed and dragon_baby_states.state == "down":
+			angered = true
 
 
 func set_hitbox_disabled(disabled: bool) -> void:

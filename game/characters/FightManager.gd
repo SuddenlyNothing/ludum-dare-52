@@ -7,13 +7,16 @@ export(NodePath) var dragon_path
 
 var titles := [
 	"Baby Dragon",
+	"Teen Dragon",
 ]
 var dragons := [
 	preload("res://characters/DragonBaby.tscn"),
+	preload("res://characters/DragonTeen.tscn"),
 ]
 var bone_offset := Vector2(0, -10)
 var t: SceneTreeTween
 var downed := false
+var dragon_ind := 1
 
 onready var dragon := get_node(dragon_path)
 onready var player := get_node(player_path)
@@ -26,11 +29,9 @@ onready var down_timer := $DownTimer
 
 
 func _ready() -> void:
-	dragon.connect("died", self, "_on_dragon_died")
-	dragon.connect("downed", self, "_on_dragon_downed")
-	dragon.connect("hit", self, "_on_dragon_hit")
-	player.connect("threw", self, "_on_player_threw")
+	connect_dragon()
 	set_process(false)
+	player.connect("threw", self, "_on_player_threw")
 
 
 func _process(delta: float) -> void:
@@ -39,17 +40,26 @@ func _process(delta: float) -> void:
 		player.throw(sign(dragon.position.x - player.position.x))
 
 
+func connect_dragon() -> void:
+	dragon.connect("died", self, "_on_dragon_died")
+	dragon.connect("downed", self, "_on_dragon_downed")
+	dragon.connect("hit", self, "_on_dragon_hit")
+
+
 func _on_dragon_died(angered: bool) -> void:
-	death_delay_timer.start()
+	if angered:
+		dragon.queue_free()
+	else:
+		death_delay_timer.start()
 
 
 func _on_dragon_hit(percent: float) -> void:
 	if t:
 		t.kill()
 	t = create_tween()
-	t.tween_property(health_bar, "value", percent, 0.3)
+	t.tween_property(health_bar, "value", percent, 0.3)\
+			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	if downed:
-		print("shit")
 		downed = false
 		set_process(false)
 		hint.hide()
@@ -84,8 +94,16 @@ func _on_player_threw() -> void:
 
 
 func _on_DeathDelayTimer_timeout() -> void:
-	# removes current and spawns new one
+	var prev_pos: Vector2 = dragon.position
 	dragon.queue_free()
+	if dragon_ind >= dragons.size():
+		return
+	dragon = dragons[dragon_ind].instance()
+	dragon.position = prev_pos
+	get_parent().add_child(dragon)
+	connect_dragon()
+	health_bar.value = 1
+	dragon_ind += 1
 
 
 func _on_DownTimer_timeout() -> void:
