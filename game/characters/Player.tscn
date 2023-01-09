@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://characters/Player.gd" type="Script" id=2]
 [ext_resource path="res://characters/PlatformerStates.gd" type="Script" id=3]
 [ext_resource path="res://characters/PlayerAnimations.tscn" type="PackedScene" id=4]
 
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 24.5, 14 )
+
 [sub_resource type="RectangleShape2D" id=16]
-extents = Vector2( 8.5, 7.5 )
+extents = Vector2( 6, 8 )
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 6, 8 )
 
 [node name="BasicPlatformer" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
@@ -17,9 +23,18 @@ script = ExtResource( 3 )
 [node name="Flip" type="Node2D" parent="."]
 
 [node name="AnimatedSprite" parent="Flip" instance=ExtResource( 4 )]
+animation = "attack_finish"
+
+[node name="Hitbox" type="Area2D" parent="Flip"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hitbox"]
+position = Vector2( 18.5, -11 )
+shape = SubResource( 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, -7.5 )
+position = Vector2( 0, -8 )
 shape = SubResource( 16 )
 
 [node name="PreventClingCast" type="RayCast2D" parent="."]
@@ -53,7 +68,7 @@ one_shot = true
 
 [node name="WallJumpTimer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 
 [node name="WallClingStayTimer" type="Timer" parent="."]
@@ -61,5 +76,31 @@ process_mode = 0
 wait_time = 0.15
 one_shot = true
 
+[node name="HurtTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.7
+one_shot = true
+
+[node name="ITimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="IFlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="AttackDelayTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2( 0, -8 )
+shape = SubResource( 18 )
+
 [connection signal="animation_finished" from="Flip/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="frame_changed" from="Flip/AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]
+[connection signal="body_entered" from="Flip/Hitbox" to="." method="_on_Hitbox_body_entered"]
+[connection signal="body_exited" from="Flip/Hitbox" to="." method="_on_Hitbox_body_exited"]

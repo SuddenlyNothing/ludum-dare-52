@@ -28,15 +28,23 @@ var ground_friction: float = max_move_speed / ground_friction_time
 var max_climb_speed: float = 150
 var climb_acceleration_time: float = 0.1
 var climb_acceleration: float = max_climb_speed / climb_acceleration_time
-var climb_friction_time: float = 0.1
+var climb_friction_time: float = 0.05
 var climb_friction: float = max_climb_speed / climb_friction_time
-var climb_jump_force: float = 1000
-#var climb_jump_friction_time: float = 2.0
-#var climb_jump_friction: float = climb_jump_force / climb_jump_friction_time
+var climb_jump_force: float = max_move_speed
+var climb_ledge_force: float = 170
 
-var climb_ledge_force: float = 1000
+var attack_speed: float = 500.0
+var attack_hit_speed: float = 1000.0
+
+var hurt_speed: float = 100
+var hurt_height: float = 60.0
+var hurt_fall_time: float = 0.25
+var hurt_jump_speed: float = ((2.0 * hurt_height) / hurt_fall_time) * -1.0
+var hurt_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * \
+		jump_time_to_descent)) * -1.0
 
 var x_input := 0
+var prev_x_input := 1
 var y_input := 0
 var max_air_jumps := 1
 var air_jumps := max_air_jumps
@@ -46,8 +54,17 @@ var snap := Vector2.DOWN * 0.5
 var up := Vector2.UP
 var stopped_jump := false
 var wall_dir := Vector2.RIGHT
+var attacked := false
+var attack_animation_finished := false
+var attack_animation_follow_through_finished := false
+var passed_through_hittables := false
+var attacking := false
+var attacked_hittables := {}
+
+var hurt_dir := 1
 
 var queue_animation := "idle"
+var hittables := {}
 
 onready var flip := $Flip
 onready var anim_sprite := $Flip/AnimatedSprite
@@ -57,10 +74,8 @@ onready var wall_jump_timer := $WallJumpTimer
 onready var save_jump_casts := $SaveJumpCasts
 onready var prevent_cling_cast := $PreventClingCast
 onready var wall_cling_stay_timer := $WallClingStayTimer
-
-
-#func _ready() -> void:
-#	Engine.time_scale = 0.3
+onready var hurt_timer := $HurtTimer
+onready var attack_delay_timer := $AttackDelayTimer
 
 
 func _process(delta: float) -> void:
@@ -89,6 +104,11 @@ func can_jump(is_on_ground: bool) -> bool:
 				air_jumps -= 1
 				return true
 	return false
+
+
+func can_attack() -> bool:
+	return not attacked and Input.is_action_pressed("attack") and \
+			attack_delay_timer.is_stopped()
 
 
 func can_save_jump() -> bool:
@@ -121,6 +141,20 @@ func set_x_input() -> void:
 		return
 	x_input = Input.get_action_strength("right") - \
 			Input.get_action_strength("left")
+	if x_input:
+		prev_x_input = x_input
+
+
+func set_attack_velocity() -> void:
+	velocity = Vector2(prev_x_input, 0) * attack_speed
+	if prev_x_input > 0 and flip.scale.x < 0:
+		flip.scale.x *= -1
+	elif prev_x_input < 0 and flip.scale.x > 0:
+		flip.scale.x *= -1
+
+
+func set_hurt_velocity() -> void:
+	velocity = Vector2(hurt_dir * hurt_speed, hurt_jump_speed)
 
 
 func apply_acceleration(delta: float) -> void:
@@ -164,7 +198,8 @@ func apply_gravity(delta: float, is_falling: bool) -> void:
 
 
 func can_cling() -> bool:
-	return is_on_wall() and not prevent_cling_cast.is_colliding()
+	return is_on_wall() and not prevent_cling_cast.is_colliding() and \
+			x_input != 0
 
 
 func set_wall_dir() -> void:
@@ -195,6 +230,8 @@ func apply_wall_friction(delta: float) -> void:
 func apply_wall_acceleration(delta: float) -> void:
 	if not y_input:
 		return
+	if y_input > 0 and velocity.y > max_climb_speed:
+		return
 	velocity.y = clamp(velocity.y + climb_acceleration * y_input * delta,
 			-max_climb_speed, max_climb_speed)
 
@@ -204,6 +241,48 @@ func wall_move(delta: float) -> void:
 	apply_wall_friction(delta)
 	velocity = move_and_slide_with_snap(velocity - wall_dir,
 			-wall_dir * 0.5, wall_dir)
+
+
+func attack_move(delta: float) -> void:
+	apply_velocity(delta, false)
+	if is_on_wall():
+		attack_animation_follow_through_finished = true
+#	if is_on_wall():
+#		var closest_dot := 2.0
+#		var closest_normal := Vector2()
+#		for i in get_slide_count():
+#			var normal := get_slide_collision(i).normal
+#			var dot = Vector2.UP.dot(normal)
+#			if dot < closest_dot:
+#				closest_normal = normal
+#				closest_dot = dot
+#		hurt_dir = sign(closest_normal.x)
+
+
+func finished_attack() -> bool:
+	return attack_animation_finished and hittables.empty()
+
+
+func add_hittables() -> void:
+	for hittable in hittables:
+		attacked_hittables[hittable] = 1
+
+
+func attack() -> void:
+	for hittable in attacked_hittables:
+		hittable.hit()
+	attacked_hittables.clear()
+
+
+func apply_hurt_gravity(delta: float) -> void:
+	velocity.y = min(velocity.y + hurt_gravity * delta, max_fall_speed)
+
+
+func hurt_move(delta: float) -> void:
+	apply_hurt_gravity(delta)
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = velocity.bounce(collision.normal) * 0.9
 
 
 func jump() -> void:
@@ -264,9 +343,27 @@ func play_anim(anim : String) -> void:
 func _on_AnimatedSprite_animation_finished() -> void:
 	if anim_sprite.animation == "land":
 		anim_sprite.play(queue_animation)
+	if anim_sprite.animation == "attack":
+		attack_animation_finished = true
+	if anim_sprite.animation == "attack_finish" and hittables.empty():
+		attack_animation_follow_through_finished = true
 
 
 func _on_AnimatedSprite_frame_changed() -> void:
 	if anim_sprite.animation == "land" and queue_animation == "walk" and \
 			anim_sprite.frame >= 1:
 		anim_sprite.play(queue_animation)
+
+
+func _on_Hitbox_body_entered(body: Node) -> void:
+	if not body.is_in_group("hittable"):
+		return
+	if attacking:
+		attacked_hittables[body] = 1
+	hittables[body] = 0
+
+
+func _on_Hitbox_body_exited(body: Node) -> void:
+	if not body.is_in_group("hittable"):
+		return
+	hittables.erase(body)

@@ -15,5 +15,5 @@ void fragment() {
 [resource]
 resource_local_to_scene = true
 shader = SubResource( 1 )
-shader_param/hit_color = Color( 0.705882, 0.12549, 0.164706, 1 )
+shader_param/hit_color = Color( 1, 1, 1, 1 )
 shader_param/hit_strength = 0.0

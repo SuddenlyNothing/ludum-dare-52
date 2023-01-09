@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://characters/PlayerAnimations.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/shaders/hit_flash.tres" type="Material" id=2]
+[ext_resource path="res://characters/Dummy.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Dummy" type="KinematicBody2D" groups=["hittable"]]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource( 3 )
+
+[node name="PlayerAnimations" parent="." instance=ExtResource( 1 )]
+material = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -10 )
+shape = SubResource( 1 )
