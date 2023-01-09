@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/boss_loop.ogg-538fde1800b827bed30db2d1175e61f7.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/music/boss_loop.ogg"
+dest_files=[ "res://.import/boss_loop.ogg-538fde1800b827bed30db2d1175e61f7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

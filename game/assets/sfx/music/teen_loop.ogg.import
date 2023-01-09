@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/teen_loop.ogg-190838c9e09a4be362cfe107a0d75544.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/music/teen_loop.ogg"
+dest_files=[ "res://.import/teen_loop.ogg-190838c9e09a4be362cfe107a0d75544.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
