@@ -153,7 +153,7 @@ func _exit_state(old_state, new_state: String) -> void:
 			if new_state != states.fall and new_state != states.attack:
 				parent.reset_air_jumps()
 		states.fall:
-			if new_state != states.jump:
+			if new_state != states.jump and new_state != states.attack:
 				parent.reset_air_jumps()
 			if new_state == states.idle or new_state == states.walk:
 				parent.play_anim("land")
