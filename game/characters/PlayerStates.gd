@@ -122,7 +122,7 @@ func _enter_state(new_state: String, old_state) -> void:
 			if old_state == states.walk or old_state == states.idle:
 				parent.coyote_timer.start()
 		states.wall_cling:
-			parent.play_anim("idle")
+			parent.play_anim("cling")
 			parent.set_wall_dir()
 			parent.wall_jump_timer.stop()
 			parent.wall_cling_stay_timer.start()

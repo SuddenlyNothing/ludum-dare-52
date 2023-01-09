@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DragonHarvestPlayer-_hanging.png-4cf5b9eb8f7e15cf4419e586dd1af283.stex"
+path="res://.import/player_cling.png-ac6db0d714a66807790e7bd42b0cbcd4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/DragonHarvestPlayer-_hanging.png"
-dest_files=[ "res://.import/DragonHarvestPlayer-_hanging.png-4cf5b9eb8f7e15cf4419e586dd1af283.stex" ]
+source_file="res://assets/sprites/player/player_cling.png"
+dest_files=[ "res://.import/player_cling.png-ac6db0d714a66807790e7bd42b0cbcd4.stex" ]
 
 [params]
 
