@@ -108,7 +108,8 @@ func _enter_state(new_state: String, old_state) -> void:
 			parent.play_anim("walk")
 			parent.attacked = false
 		states.jump:
-			parent.jump_sfx.play()
+			if previous_state != states.wall_cling:
+				parent.jump_sfx.play()
 			parent.play_anim("jump")
 			parent.jump()
 		states.fall:
@@ -162,6 +163,7 @@ func _exit_state(old_state, new_state: String) -> void:
 					parent.climb_ledge()
 			elif new_state == states.jump:
 				parent.wall_jump()
+				parent.jump_sfx.play()
 		states.attack:
 			if new_state != states.hurt:
 				parent.attack_delay_timer.start()
