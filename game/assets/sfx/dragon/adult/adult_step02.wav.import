@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/adult_step02.wav-d6fc1a31b9bf193c60b797b3226a9af6.sample"
+
+[deps]
+
+source_file="res://assets/sfx/dragon/adult/adult_step02.wav"
+dest_files=[ "res://.import/adult_step02.wav-d6fc1a31b9bf193c60b797b3226a9af6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
