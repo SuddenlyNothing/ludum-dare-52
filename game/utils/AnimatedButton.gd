@@ -54,7 +54,7 @@ var is_mouse_inside := false
 var previous_disabled := false
 var pressing := false
 var focused := false
-var started_scene_transition := false
+#var started_scene_transition := false
 var current_focused: Control
 
 onready var t := $Tween
@@ -71,10 +71,10 @@ func _ready() -> void:
 
 # Goes to next_scene if the next_scene variable is set
 func _pressed() -> void:
-	if started_scene_transition:
-		return
+#	if started_scene_transition:
+#		return
 	if next_scene:
-		started_scene_transition = true
+#		started_scene_transition = true
 		SceneHandler.goto_scene(next_scene)
 	if play_pressed:
 		pressed_sfx.play()
@@ -222,8 +222,8 @@ func set_color(to: Color) -> void:
 
 # Animates the current styling to the new given to style
 func set_style(to: String) -> void:
-	if started_scene_transition:
-		return
+#	if started_scene_transition:
+#		return
 	var from := bg.get_stylebox("panel") as StyleBoxFlat
 	var style: StyleBoxFlat = null
 	var timing := 0.0
@@ -365,8 +365,8 @@ func _on_AnimButton_mouse_exited() -> void:
 
 # Detects pressed
 func _on_AnimButton_button_down() -> void:
-	if started_scene_transition:
-		return
+#	if started_scene_transition:
+#		return
 	pressing = true
 	if action_mode == ACTION_MODE_BUTTON_PRESS and play_pressed:
 		pressed_sfx.play()
@@ -406,7 +406,7 @@ func _on_AnimatedButton_draw() -> void:
 
 
 func _toggled(button_pressed: bool) -> void:
-	if pressing or disabled or started_scene_transition:
+	if pressing or disabled:# or started_scene_transition:
 		return
 	if button_pressed:
 		set_style("pressed")
@@ -418,7 +418,7 @@ func _toggled(button_pressed: bool) -> void:
 
 func _on_AnimatedButton_hide() -> void:
 	is_mouse_inside = false
-	if disabled or started_scene_transition:
+	if disabled:# or started_scene_transition:
 		return
 	if current_focused == self:
 		find_next_valid_focus().grab_focus()
@@ -427,7 +427,7 @@ func _on_AnimatedButton_hide() -> void:
 
 func _on_AnimatedButton_focus_entered() -> void:
 	focused = true
-	if disabled or started_scene_transition:
+	if disabled:# or started_scene_transition:
 		return
 	if play_hover:
 		hover_sfx.play()
@@ -436,7 +436,7 @@ func _on_AnimatedButton_focus_entered() -> void:
 
 func _on_AnimatedButton_focus_exited() -> void:
 	focused = false
-	if disabled or started_scene_transition:
+	if disabled:# or started_scene_transition:
 		return
 	set_style("normal")
 

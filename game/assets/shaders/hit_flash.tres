@@ -1,6 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
 [sub_resource type="Shader" id=1]
+resource_local_to_scene = true
 code = "shader_type canvas_item;
 
 uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
@@ -15,5 +16,5 @@ void fragment() {
 [resource]
 resource_local_to_scene = true
 shader = SubResource( 1 )
-shader_param/hit_color = Color( 1, 1, 1, 1 )
+shader_param/hit_color = Color( 0.709804, 0.129412, 0.160784, 1 )
 shader_param/hit_strength = 0.0

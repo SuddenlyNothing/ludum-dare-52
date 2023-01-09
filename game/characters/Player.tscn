@@ -1,6 +1,5 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=40 format=2]
 
-[ext_resource path="res://assets/shaders/hit_flash.tres" type="Material" id=1]
 [ext_resource path="res://characters/Player.gd" type="Script" id=2]
 [ext_resource path="res://characters/PlayerStates.gd" type="Script" id=3]
 [ext_resource path="res://characters/PlayerAnimations.tscn" type="PackedScene" id=4]
@@ -26,6 +25,26 @@
 [ext_resource path="res://assets/sfx/player/player_wall_jump02.wav" type="AudioStream" id=24]
 [ext_resource path="res://assets/sfx/player/player_wall_move01.wav" type="AudioStream" id=25]
 [ext_resource path="res://assets/sfx/player/player_wall_move02.wav" type="AudioStream" id=26]
+[ext_resource path="res://characters/PlayerHUD.tscn" type="PackedScene" id=27]
+
+[sub_resource type="Shader" id=1]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float hit_strength : hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+	vec4 custom_color = texture(TEXTURE, UV);
+	custom_color.rgb = mix(custom_color.rgb, hit_color.rgb, hit_strength);
+	COLOR = custom_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=27]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/hit_color = Color( 0.709804, 0.129412, 0.160784, 1 )
+shader_param/hit_strength = 0.0
 
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 19, 11 )
@@ -70,7 +89,8 @@ script = ExtResource( 3 )
 [node name="Flip" type="Node2D" parent="."]
 
 [node name="AnimatedSprite" parent="Flip" instance=ExtResource( 4 )]
-material = ExtResource( 1 )
+material = SubResource( 27 )
+animation = "death_fall"
 
 [node name="Hitbox" type="Area2D" parent="Flip"]
 collision_layer = 0
@@ -188,6 +208,12 @@ audio_streams = [ ExtResource( 23 ), ExtResource( 24 ) ]
 [node name="WallMoveSFX" parent="Audio" instance=ExtResource( 5 )]
 stream = SubResource( 26 )
 audio_streams = [ ExtResource( 25 ), ExtResource( 26 ) ]
+
+[node name="PlayerHUD" parent="." instance=ExtResource( 27 )]
+__meta__ = {
+"_edit_horizontal_guides_": [ 364.0 ],
+"_edit_vertical_guides_": [ 20.0 ]
+}
 
 [connection signal="animation_finished" from="Flip/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="frame_changed" from="Flip/AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]

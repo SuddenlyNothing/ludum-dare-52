@@ -1,7 +1,76 @@
-[gd_scene format=2]
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/ui/health/player_health_under.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/health/player_health_progress.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/health/player_death_portrait.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/health/player_hurt_portrait.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/health/player_portrait.png" type="Texture" id=5]
+[ext_resource path="res://characters/PlayerHUD.gd" type="Script" id=6]
+
+[sub_resource type="Shader" id=1]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float hit_strength : hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+	vec4 custom_color = texture(TEXTURE, UV);
+	custom_color.rgb = mix(custom_color.rgb, hit_color.rgb, hit_strength);
+	COLOR = custom_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/hit_color = Color( 0.709804, 0.129412, 0.160784, 1 )
+shader_param/hit_strength = 0.0
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "hurt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "normal",
+"speed": 5.0
+} ]
 
 [node name="PlayerHUD" type="CanvasLayer"]
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 251.0 ],
+"_edit_vertical_guides_": [ 5.0 ]
+}
 
 [node name="Control" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 211.0
+margin_right = 45.0
+margin_bottom = 251.0
+mouse_filter = 2
+
+[node name="HealthBar" type="TextureProgress" parent="Control"]
+margin_right = 96.0
+margin_bottom = 40.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+texture_progress_offset = Vector2( 39, 33 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Control/HealthBar"]
+material = SubResource( 5 )
+position = Vector2( 21, 22 )
+frames = SubResource( 4 )
+animation = "normal"

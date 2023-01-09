@@ -51,8 +51,10 @@ func _enter_state(new_state: String, old_state) -> void:
 			parent.set_charge_velocity()
 		states.down:
 			parent.play_anim("down")
+			parent.down_sfx.play()
 		states.death:
 			parent.play_anim("death")
+			parent.death_sfx.play()
 
 
 # Called on exiting state.

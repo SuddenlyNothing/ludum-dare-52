@@ -1,15 +1,50 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://characters/DragonBabyAnimations.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/DragonBaby.gd" type="Script" id=2]
 [ext_resource path="res://characters/DragonBabyStates.gd" type="Script" id=3]
-[ext_resource path="res://assets/shaders/hit_flash.tres" type="Material" id=4]
+[ext_resource path="res://utils/MultiAudioPlayer2D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sfx/dragon/baby/baby_charge01.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sfx/dragon/baby/baby_charge02.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/dragon/baby/baby_dead.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sfx/dragon/baby/baby_hurt01.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sfx/dragon/baby/baby_hurt02.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sfx/dragon/baby/baby_knockout02.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sfx/dragon/baby/baby_knockout01.wav" type="AudioStream" id=11]
+
+[sub_resource type="Shader" id=1]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float hit_strength : hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+	vec4 custom_color = texture(TEXTURE, UV);
+	custom_color.rgb = mix(custom_color.rgb, hit_color.rgb, hit_strength);
+	COLOR = custom_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/hit_color = Color( 1, 1, 1, 1 )
+shader_param/hit_strength = 0.0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 21.5, 9.5 )
+extents = Vector2( 10.5, 9.5 )
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 19, 11 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 30, 11 )
+
+[sub_resource type="AudioStreamRandomPitch" id=6]
+resource_local_to_scene = true
+
+[sub_resource type="AudioStreamRandomPitch" id=7]
+resource_local_to_scene = true
+
+[sub_resource type="AudioStreamRandomPitch" id=8]
+resource_local_to_scene = true
 
 [node name="DragonBaby" type="KinematicBody2D" groups=["hittable"]]
 collision_layer = 4
@@ -21,7 +56,7 @@ script = ExtResource( 3 )
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="DragonBabyAnimations" parent="Pivot" instance=ExtResource( 1 )]
-material = ExtResource( 4 )
+material = SubResource( 5 )
 
 [node name="RayCast2D" type="RayCast2D" parent="Pivot"]
 position = Vector2( -25, -6 )
@@ -33,17 +68,32 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hitbox"]
-position = Vector2( -4.5, -9.5 )
+position = Vector2( -15.5, -9.5 )
 shape = SubResource( 2 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -11 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="ChargeWaitTimer" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
+
+[node name="ChargeSFX" parent="." instance=ExtResource( 4 )]
+stream = SubResource( 6 )
+audio_streams = [ ExtResource( 5 ), ExtResource( 6 ) ]
+
+[node name="DeathSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+bus = "SFX"
+
+[node name="HurtSFX" parent="." instance=ExtResource( 4 )]
+stream = SubResource( 7 )
+audio_streams = [ ExtResource( 8 ), ExtResource( 9 ) ]
+
+[node name="DownSFX" parent="." instance=ExtResource( 4 )]
+stream = SubResource( 8 )
+audio_streams = [ ExtResource( 11 ), ExtResource( 10 ) ]
 
 [connection signal="animation_finished" from="Pivot/DragonBabyAnimations" to="." method="_on_DragonBabyAnimations_animation_finished"]
 [connection signal="body_entered" from="Pivot/Hitbox" to="." method="_on_Hitbox_body_entered"]

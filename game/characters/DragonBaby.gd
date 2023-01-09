@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var velocity := Vector2()
 
-var stop_dist := 28
+var stop_dist := 20
 var charge_speed := 300.0
 var friction: float = (charge_speed * charge_speed) / (stop_dist * 2)
 var charge_dir := -1
@@ -14,6 +14,11 @@ onready var charge_wait_timer := $ChargeWaitTimer
 onready var raycast := $Pivot/RayCast2D
 onready var pivot := $Pivot
 onready var hitbox_collision := $Pivot/Hitbox/CollisionShape2D
+
+onready var charge_sfx := $ChargeSFX
+onready var death_sfx := $DeathSFX
+onready var hurt_sfx := $HurtSFX
+onready var down_sfx := $DownSFX
 
 
 func flip() -> void:
@@ -45,7 +50,8 @@ func play_anim(anim: String) -> void:
 	anim_sprite.play(anim)
 
 
-func hit() -> void:
+func hit(dir: int) -> void:
+	hurt_sfx.play()
 	var t := create_tween()
 	t.tween_property(anim_sprite.get_material(), "shader_param/hit_strength",
 			0.0, 0.5).from(1.0)
@@ -58,6 +64,7 @@ func set_hitbox_disabled(disabled: bool) -> void:
 func _on_DragonBabyAnimations_animation_finished() -> void:
 	if anim_sprite.animation == "charge_prep":
 		charging = true
+		charge_sfx.play()
 		anim_sprite.play("charge")
 		set_hitbox_disabled(false)
 

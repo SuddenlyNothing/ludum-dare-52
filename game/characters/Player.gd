@@ -63,6 +63,9 @@ var attacked_hittables := {}
 
 var hurt_dir := 1
 
+var max_health := 6
+var health := max_health
+
 var queue_animation := "idle"
 var hittables := {}
 
@@ -81,6 +84,7 @@ onready var i_timer := $ITimer
 onready var i_flash_timer := $IFlashTimer
 onready var hitbox_collision := $Flip/Hitbox/CollisionShape2D
 onready var hurtbox_collision := $Hurtbox/CollisionShape2D
+onready var hud := $PlayerHUD
 
 onready var attack_sfx := $Audio/AttackSFX
 onready var death_sfx := $Audio/DeathSFX
@@ -104,11 +108,20 @@ func _process(delta: float) -> void:
 func hit(dir: int) -> void:
 	if not i_timer.is_stopped():
 		return
-	set_collisions_disabled(true)
-	i_flash_timer.start()
-	i_timer.start()
-	hurt_dir = dir
-	player_states.call_deferred("set_state", "hurt")
+	health -= 1
+	hud.set_health(float(health) / max_health)
+	
+	if health > 0:
+		var t := create_tween()
+		t.tween_property(anim_sprite.get_material(), "shader_param/hit_strength",
+				0.0, 0.5).from(1.0)
+		set_collisions_disabled(true)
+		i_flash_timer.start()
+		i_timer.start()
+		hurt_dir = dir
+		player_states.call_deferred("set_state", "hurt")
+	else:
+		player_states.call_deferred("set_state", "death")
 
 
 func set_collisions_disabled(disabled: bool) -> void:
@@ -277,7 +290,7 @@ func wall_move(delta: float) -> void:
 
 
 func attack_move(delta: float) -> void:
-	if hittables.empty():
+	if hittables.empty() or attack_animation_finished:
 		velocity = velocity.normalized() * attack_speed
 	else:
 		velocity = velocity.normalized() * attack_hit_speed
@@ -296,18 +309,31 @@ func attack_move(delta: float) -> void:
 #		hurt_dir = sign(closest_normal.x)
 
 
+func death_move(delta: float) -> void:
+	apply_gravity(delta, true)
+	var friction_amount := ground_friction * delta
+	if abs(velocity.x) <= friction_amount / 2.0:
+		velocity.x = 0
+	elif velocity.x > 0:
+		velocity.x -= friction_amount
+	else:
+		velocity.x += friction_amount
+	apply_velocity(delta, false)
+
+
 func finished_attack() -> bool:
 	return attack_animation_finished and hittables.empty()
 
 
 func add_hittables() -> void:
 	for hittable in hittables:
+		hittable.hit(sign(velocity.x))
 		attacked_hittables[hittable] = 1
 
 
 func attack() -> void:
 	for hittable in attacked_hittables:
-		hittable.hit()
+		hittable.hit(sign(velocity.x))
 	attacked_hittables.clear()
 
 
@@ -400,6 +426,7 @@ func _on_Hitbox_body_entered(body: Node) -> void:
 	if not body.is_in_group("hittable"):
 		return
 	if attacking:
+		body.hit(sign(velocity.x))
 		attacked_hittables[body] = 1
 	hittables[body] = 0
 
