@@ -130,6 +130,7 @@ func _enter_state(new_state: String, old_state) -> void:
 				parent.prev_x_input = sign(parent.wall_dir.x)
 			parent.set_attack_velocity()
 			parent.attacked = true
+			parent.attacked_hittables.clear()
 			parent.attack_animation_finished = false
 			parent.attack_animation_follow_through_finished = false
 			parent.passed_through_hittables = false
@@ -169,7 +170,5 @@ func _exit_state(old_state, new_state: String) -> void:
 				parent.attack_delay_timer.start()
 				parent.attacking = false
 				parent.attack()
-			else:
-				parent.attacked_hittables.clear()
 		states.hurt:
 			pass
