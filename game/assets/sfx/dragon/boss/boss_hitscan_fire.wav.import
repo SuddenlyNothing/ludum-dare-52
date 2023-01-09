@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/boss_hitscan_fire.wav-a23cb5a563c76988484dcf883fb41966.sample"
+path="res://.import/boss_hitscan_fire.wav-7942d691019d9e8dea7f32829d9960bb.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Boss/boss_hitscan_fire.wav"
-dest_files=[ "res://.import/boss_hitscan_fire.wav-a23cb5a563c76988484dcf883fb41966.sample" ]
+source_file="res://assets/sfx/dragon/boss/boss_hitscan_fire.wav"
+dest_files=[ "res://.import/boss_hitscan_fire.wav-7942d691019d9e8dea7f32829d9960bb.sample" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/boss_fire_slam_impact.wav-00bd3a42674fb70bc967e0a03a1300ed.sample"
+path="res://.import/boss_fire_slam_impact.wav-8573cb22262624c1e2f0df64dcb28d60.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Boss/boss_fire_slam_impact.wav"
-dest_files=[ "res://.import/boss_fire_slam_impact.wav-00bd3a42674fb70bc967e0a03a1300ed.sample" ]
+source_file="res://assets/sfx/dragon/boss/boss_fire_slam_impact.wav"
+dest_files=[ "res://.import/boss_fire_slam_impact.wav-8573cb22262624c1e2f0df64dcb28d60.sample" ]
 
 [params]
 

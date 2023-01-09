@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/boss_knockout01.wav-933524b223b34618836a3a5f93242183.sample"
+path="res://.import/boss_knockout01.wav-9c1a077fb841bc7273934838667f1def.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Boss/boss_knockout01.wav"
-dest_files=[ "res://.import/boss_knockout01.wav-933524b223b34618836a3a5f93242183.sample" ]
+source_file="res://assets/sfx/dragon/boss/boss_knockout01.wav"
+dest_files=[ "res://.import/boss_knockout01.wav-9c1a077fb841bc7273934838667f1def.sample" ]
 
 [params]
 

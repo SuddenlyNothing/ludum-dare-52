@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/adult_super_fireball_impact.wav-f711aa390f21efd182df63d8179e9422.sample"
+path="res://.import/adult_super_fireball_impact.wav-0917b62f2f537fab007f9a4a604c81e7.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Adult/adult_super_fireball_impact.wav"
-dest_files=[ "res://.import/adult_super_fireball_impact.wav-f711aa390f21efd182df63d8179e9422.sample" ]
+source_file="res://assets/sfx/dragon/adult/adult_super_fireball_impact.wav"
+dest_files=[ "res://.import/adult_super_fireball_impact.wav-0917b62f2f537fab007f9a4a604c81e7.sample" ]
 
 [params]
 

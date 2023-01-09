@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/boss_dead.wav-59991dfbbcabd899c90dcc770fc4dcad.sample"
+path="res://.import/boss_dead.wav-af17d06a7f1037ee79094f48bfff83ec.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Boss/boss_dead.wav"
-dest_files=[ "res://.import/boss_dead.wav-59991dfbbcabd899c90dcc770fc4dcad.sample" ]
+source_file="res://assets/sfx/dragon/boss/boss_dead.wav"
+dest_files=[ "res://.import/boss_dead.wav-af17d06a7f1037ee79094f48bfff83ec.sample" ]
 
 [params]
 

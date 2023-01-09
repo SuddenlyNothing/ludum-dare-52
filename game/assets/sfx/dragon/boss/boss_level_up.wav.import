@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/boss_level_up.wav-43cfa6f6b94fd408b46f818bae24a26a.sample"
+path="res://.import/boss_level_up.wav-0f6d3bd11904de15a8819a6e9e5062cb.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Boss/boss_level_up.wav"
-dest_files=[ "res://.import/boss_level_up.wav-43cfa6f6b94fd408b46f818bae24a26a.sample" ]
+source_file="res://assets/sfx/dragon/boss/boss_level_up.wav"
+dest_files=[ "res://.import/boss_level_up.wav-0f6d3bd11904de15a8819a6e9e5062cb.sample" ]
 
 [params]
 

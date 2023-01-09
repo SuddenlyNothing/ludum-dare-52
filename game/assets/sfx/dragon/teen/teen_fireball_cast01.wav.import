@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/teen_fireball_cast01.wav-2a3c8a9e3136f7b338e0c213ff8f7983.sample"
+path="res://.import/teen_fireball_cast01.wav-8f361ca17bdcf3f7dcecd7e5acdd24b4.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Teen/teen_fireball_cast01.wav"
-dest_files=[ "res://.import/teen_fireball_cast01.wav-2a3c8a9e3136f7b338e0c213ff8f7983.sample" ]
+source_file="res://assets/sfx/dragon/teen/teen_fireball_cast01.wav"
+dest_files=[ "res://.import/teen_fireball_cast01.wav-8f361ca17bdcf3f7dcecd7e5acdd24b4.sample" ]
 
 [params]
 

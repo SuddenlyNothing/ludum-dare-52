@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/teen_knockout01.wav-53ca07ed29f2db81de46a4b20e1e1fe3.sample"
+path="res://.import/teen_knockout01.wav-77685b37c9d4b31f9805d3b0b52f2313.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Teen/teen_knockout01.wav"
-dest_files=[ "res://.import/teen_knockout01.wav-53ca07ed29f2db81de46a4b20e1e1fe3.sample" ]
+source_file="res://assets/sfx/dragon/teen/teen_knockout01.wav"
+dest_files=[ "res://.import/teen_knockout01.wav-77685b37c9d4b31f9805d3b0b52f2313.sample" ]
 
 [params]
 

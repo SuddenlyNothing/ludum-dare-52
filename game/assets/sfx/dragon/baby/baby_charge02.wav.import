@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/baby_charge02.wav-3a5afef5f4afa1eddafc641d15010eda.sample"
+path="res://.import/baby_charge02.wav-0f08a25f904462b18a98bddb0b37936e.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Baby/baby_charge02.wav"
-dest_files=[ "res://.import/baby_charge02.wav-3a5afef5f4afa1eddafc641d15010eda.sample" ]
+source_file="res://assets/sfx/dragon/baby/baby_charge02.wav"
+dest_files=[ "res://.import/baby_charge02.wav-0f08a25f904462b18a98bddb0b37936e.sample" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/boss_hurt01.wav-0999de6628e8e11932d7458a96ec2b46.sample"
+path="res://.import/boss_hurt01.wav-3df0e001fab07c0d35ea3f0c7f38ee06.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Boss/boss_hurt01.wav"
-dest_files=[ "res://.import/boss_hurt01.wav-0999de6628e8e11932d7458a96ec2b46.sample" ]
+source_file="res://assets/sfx/dragon/boss/boss_hurt01.wav"
+dest_files=[ "res://.import/boss_hurt01.wav-3df0e001fab07c0d35ea3f0c7f38ee06.sample" ]
 
 [params]
 

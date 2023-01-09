@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/teen_hurt02.wav-ef7b77339efea3d239e11da1b70ce4cf.sample"
+path="res://.import/teen_hurt02.wav-1889d632e39d2819740ef61b1989522f.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Teen/teen_hurt02.wav"
-dest_files=[ "res://.import/teen_hurt02.wav-ef7b77339efea3d239e11da1b70ce4cf.sample" ]
+source_file="res://assets/sfx/dragon/teen/teen_hurt02.wav"
+dest_files=[ "res://.import/teen_hurt02.wav-1889d632e39d2819740ef61b1989522f.sample" ]
 
 [params]
 

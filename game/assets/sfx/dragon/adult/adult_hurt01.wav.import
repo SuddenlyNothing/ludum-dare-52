@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/adult_hurt01.wav-5f7744c6333ca421a57e8ed4fbc84111.sample"
+path="res://.import/adult_hurt01.wav-70b34864b9699ca5b6417db0c397786e.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Adult/adult_hurt01.wav"
-dest_files=[ "res://.import/adult_hurt01.wav-5f7744c6333ca421a57e8ed4fbc84111.sample" ]
+source_file="res://assets/sfx/dragon/adult/adult_hurt01.wav"
+dest_files=[ "res://.import/adult_hurt01.wav-70b34864b9699ca5b6417db0c397786e.sample" ]
 
 [params]
 

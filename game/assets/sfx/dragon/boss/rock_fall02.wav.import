@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/rock_fall02.wav-da0d00d49e232f7399e2e34fc7160abc.sample"
+path="res://.import/rock_fall02.wav-e2f0fa73f68f16c3541cb94de3cde439.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Boss/rock_fall02.wav"
-dest_files=[ "res://.import/rock_fall02.wav-da0d00d49e232f7399e2e34fc7160abc.sample" ]
+source_file="res://assets/sfx/dragon/boss/rock_fall02.wav"
+dest_files=[ "res://.import/rock_fall02.wav-e2f0fa73f68f16c3541cb94de3cde439.sample" ]
 
 [params]
 

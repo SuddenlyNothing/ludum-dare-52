@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/baby_hurt01.wav-d9fae364e64adb1dbd7df0095b5b3740.sample"
+path="res://.import/baby_hurt01.wav-a1a7f42f8f6fafb9f18b6040ac69e3ca.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Baby/baby_hurt01.wav"
-dest_files=[ "res://.import/baby_hurt01.wav-d9fae364e64adb1dbd7df0095b5b3740.sample" ]
+source_file="res://assets/sfx/dragon/baby/baby_hurt01.wav"
+dest_files=[ "res://.import/baby_hurt01.wav-a1a7f42f8f6fafb9f18b6040ac69e3ca.sample" ]
 
 [params]
 

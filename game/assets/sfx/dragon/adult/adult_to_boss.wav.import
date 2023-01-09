@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/adult_to_boss.wav-627ac65cd5731cf0ae02927066dff0a6.sample"
+path="res://.import/adult_to_boss.wav-5f284306ad04544bdea1a44605ba47e9.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Adult/adult_to_boss.wav"
-dest_files=[ "res://.import/adult_to_boss.wav-627ac65cd5731cf0ae02927066dff0a6.sample" ]
+source_file="res://assets/sfx/dragon/adult/adult_to_boss.wav"
+dest_files=[ "res://.import/adult_to_boss.wav-5f284306ad04544bdea1a44605ba47e9.sample" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/baby_knockout01.wav-574eb0e33b22680bdbbb838690e82fe3.sample"
+path="res://.import/baby_knockout01.wav-9fa142340981119d7dc3130aede23808.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Baby/baby_knockout01.wav"
-dest_files=[ "res://.import/baby_knockout01.wav-574eb0e33b22680bdbbb838690e82fe3.sample" ]
+source_file="res://assets/sfx/dragon/baby/baby_knockout01.wav"
+dest_files=[ "res://.import/baby_knockout01.wav-9fa142340981119d7dc3130aede23808.sample" ]
 
 [params]
 

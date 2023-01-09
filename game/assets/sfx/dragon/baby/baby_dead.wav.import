@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/baby_dead.wav-22654aa8763dde79c672f226512c7555.sample"
+path="res://.import/baby_dead.wav-f6718ada221028086029ead1ba2f9d55.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Baby/baby_dead.wav"
-dest_files=[ "res://.import/baby_dead.wav-22654aa8763dde79c672f226512c7555.sample" ]
+source_file="res://assets/sfx/dragon/baby/baby_dead.wav"
+dest_files=[ "res://.import/baby_dead.wav-f6718ada221028086029ead1ba2f9d55.sample" ]
 
 [params]
 

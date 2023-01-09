@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/boss_super_fireball01.wav-bda5a449d3f1df5cf184007f7f1cee9d.sample"
+path="res://.import/boss_super_fireball01.wav-f9858b627a845ba4224ed1a861d74bfc.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Boss/boss_super_fireball01.wav"
-dest_files=[ "res://.import/boss_super_fireball01.wav-bda5a449d3f1df5cf184007f7f1cee9d.sample" ]
+source_file="res://assets/sfx/dragon/boss/boss_super_fireball01.wav"
+dest_files=[ "res://.import/boss_super_fireball01.wav-f9858b627a845ba4224ed1a861d74bfc.sample" ]
 
 [params]
 

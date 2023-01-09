@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/adult_spindash.wav-da2db7c7d75e515b311e4296af850bbc.sample"
+path="res://.import/adult_spindash.wav-92dce6b088d4fd0522149049e68cc56a.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Adult/adult_spindash.wav"
-dest_files=[ "res://.import/adult_spindash.wav-da2db7c7d75e515b311e4296af850bbc.sample" ]
+source_file="res://assets/sfx/dragon/adult/adult_spindash.wav"
+dest_files=[ "res://.import/adult_spindash.wav-92dce6b088d4fd0522149049e68cc56a.sample" ]
 
 [params]
 

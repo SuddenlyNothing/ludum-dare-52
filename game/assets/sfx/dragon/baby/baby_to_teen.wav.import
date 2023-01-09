@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/baby_to_teen.wav-1c180454fb1efd5e26cdaf225b1c5231.sample"
+path="res://.import/baby_to_teen.wav-b032feff022d7ce4cd394726d7fdfc71.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Baby/baby_to_teen.wav"
-dest_files=[ "res://.import/baby_to_teen.wav-1c180454fb1efd5e26cdaf225b1c5231.sample" ]
+source_file="res://assets/sfx/dragon/baby/baby_to_teen.wav"
+dest_files=[ "res://.import/baby_to_teen.wav-b032feff022d7ce4cd394726d7fdfc71.sample" ]
 
 [params]
 

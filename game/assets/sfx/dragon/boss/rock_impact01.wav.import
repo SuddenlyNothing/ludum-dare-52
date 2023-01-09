@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/rock_impact01.wav-6b75c7fce77712fd2f63c5297e6e4a20.sample"
+path="res://.import/rock_impact01.wav-3c817f62e7fcc571c0396c4520c019f2.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Boss/rock_impact01.wav"
-dest_files=[ "res://.import/rock_impact01.wav-6b75c7fce77712fd2f63c5297e6e4a20.sample" ]
+source_file="res://assets/sfx/dragon/boss/rock_impact01.wav"
+dest_files=[ "res://.import/rock_impact01.wav-3c817f62e7fcc571c0396c4520c019f2.sample" ]
 
 [params]
 

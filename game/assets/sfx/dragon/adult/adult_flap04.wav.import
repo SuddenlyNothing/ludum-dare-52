@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/adult_flap04.wav-5af49b0167d5324a317bf98036fd5433.sample"
+path="res://.import/adult_flap04.wav-fbb6bc34a605d2cf7f60a993161181cb.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Adult/adult_flap04.wav"
-dest_files=[ "res://.import/adult_flap04.wav-5af49b0167d5324a317bf98036fd5433.sample" ]
+source_file="res://assets/sfx/dragon/adult/adult_flap04.wav"
+dest_files=[ "res://.import/adult_flap04.wav-fbb6bc34a605d2cf7f60a993161181cb.sample" ]
 
 [params]
 

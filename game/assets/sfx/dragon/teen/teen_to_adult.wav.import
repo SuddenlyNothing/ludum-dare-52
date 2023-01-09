@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/teen_to_adult.wav-12cd8b5184ae0c62d39d3bc4500b348b.sample"
+path="res://.import/teen_to_adult.wav-f7046ee1bf540a17000d002c35bb7524.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Teen/teen_to_adult.wav"
-dest_files=[ "res://.import/teen_to_adult.wav-12cd8b5184ae0c62d39d3bc4500b348b.sample" ]
+source_file="res://assets/sfx/dragon/teen/teen_to_adult.wav"
+dest_files=[ "res://.import/teen_to_adult.wav-f7046ee1bf540a17000d002c35bb7524.sample" ]
 
 [params]
 

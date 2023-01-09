@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/teen_flap_wings03.wav-8cf2bdbdd440ffff7457b26b3dd0a2f8.sample"
+path="res://.import/teen_flap_wings03.wav-55a0776f4aaca3f9c3513e98e7efbefa.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Teen/teen_flap_wings03.wav"
-dest_files=[ "res://.import/teen_flap_wings03.wav-8cf2bdbdd440ffff7457b26b3dd0a2f8.sample" ]
+source_file="res://assets/sfx/dragon/teen/teen_flap_wings03.wav"
+dest_files=[ "res://.import/teen_flap_wings03.wav-55a0776f4aaca3f9c3513e98e7efbefa.sample" ]
 
 [params]
 

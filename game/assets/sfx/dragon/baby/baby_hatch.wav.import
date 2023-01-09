@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/baby_hatch.wav-43422433110f316bae1f4b3abca4df1b.sample"
+path="res://.import/baby_hatch.wav-c13135c3e13a900a27fff9c5283cbd25.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Baby/baby_hatch.wav"
-dest_files=[ "res://.import/baby_hatch.wav-43422433110f316bae1f4b3abca4df1b.sample" ]
+source_file="res://assets/sfx/dragon/baby/baby_hatch.wav"
+dest_files=[ "res://.import/baby_hatch.wav-c13135c3e13a900a27fff9c5283cbd25.sample" ]
 
 [params]
 

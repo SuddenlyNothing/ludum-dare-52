@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/teen_swipe02.wav-70ff8fe81ba3af6f369e47c89486bb33.sample"
+path="res://.import/teen_swipe02.wav-254d35af95d5ff6c4d9d56cb94af047c.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Teen/teen_swipe02.wav"
-dest_files=[ "res://.import/teen_swipe02.wav-70ff8fe81ba3af6f369e47c89486bb33.sample" ]
+source_file="res://assets/sfx/dragon/teen/teen_swipe02.wav"
+dest_files=[ "res://.import/teen_swipe02.wav-254d35af95d5ff6c4d9d56cb94af047c.sample" ]
 
 [params]
 

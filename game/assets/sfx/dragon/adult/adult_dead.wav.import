@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/adult_dead.wav-5bae0e2a4fa5d1042916ef5cc58dda00.sample"
+path="res://.import/adult_dead.wav-8af74beb49da6506398bb5a5e0b16d4e.sample"
 
 [deps]
 
-source_file="res://assets/sfx/dragon/Adult/adult_dead.wav"
-dest_files=[ "res://.import/adult_dead.wav-5bae0e2a4fa5d1042916ef5cc58dda00.sample" ]
+source_file="res://assets/sfx/dragon/adult/adult_dead.wav"
+dest_files=[ "res://.import/adult_dead.wav-8af74beb49da6506398bb5a5e0b16d4e.sample" ]
 
 [params]
 
