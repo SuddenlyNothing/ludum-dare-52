@@ -6,22 +6,6 @@
 [ext_resource path="res://assets/sprites/dragon_baby/baby_eat.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/dragon_baby/baby_idle.png" type="Texture" id=5]
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 80, 48 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 80, 0, 80, 48 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 160, 0, 80, 48 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 240, 0, 80, 48 )
-
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
 region = Rect2( 320, 0, 80, 48 )
@@ -41,6 +25,22 @@ region = Rect2( 560, 0, 80, 48 )
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
 region = Rect2( 640, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 1 )
+region = Rect2( 80, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 1 )
+region = Rect2( 160, 0, 80, 48 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 1 )
+region = Rect2( 240, 0, 80, 48 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 2 )
@@ -128,9 +128,14 @@ region = Rect2( 240, 0, 80, 48 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": false,
 "name": "charge",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
+"loop": false,
+"name": "charge_prep",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
@@ -158,4 +163,4 @@ animations = [ {
 frames = SubResource( 1 )
 animation = "idle"
 speed_scale = 2.0
-offset = Vector2( 0, -18 )
+offset = Vector2( 1, -18 )

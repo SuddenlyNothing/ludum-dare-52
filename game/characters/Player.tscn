@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://assets/shaders/hit_flash.tres" type="Material" id=1]
 [ext_resource path="res://characters/Player.gd" type="Script" id=2]
-[ext_resource path="res://characters/PlatformerStates.gd" type="Script" id=3]
+[ext_resource path="res://characters/PlayerStates.gd" type="Script" id=3]
 [ext_resource path="res://characters/PlayerAnimations.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 24.5, 14 )
+extents = Vector2( 20, 11 )
 
 [sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 6, 8 )
@@ -13,24 +14,24 @@ extents = Vector2( 6, 8 )
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 6, 8 )
 
-[node name="BasicPlatformer" type="KinematicBody2D" groups=["player"]]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource( 2 )
 
-[node name="PlatformerStates" type="Node" parent="."]
+[node name="PlayerStates" type="Node" parent="."]
 script = ExtResource( 3 )
 
 [node name="Flip" type="Node2D" parent="."]
 
 [node name="AnimatedSprite" parent="Flip" instance=ExtResource( 4 )]
-animation = "attack_finish"
+material = ExtResource( 1 )
 
 [node name="Hitbox" type="Area2D" parent="Flip"]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hitbox"]
-position = Vector2( 18.5, -11 )
+position = Vector2( 23, -11 )
 shape = SubResource( 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -104,3 +105,5 @@ shape = SubResource( 18 )
 [connection signal="frame_changed" from="Flip/AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]
 [connection signal="body_entered" from="Flip/Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="body_exited" from="Flip/Hitbox" to="." method="_on_Hitbox_body_exited"]
+[connection signal="timeout" from="ITimer" to="." method="_on_ITimer_timeout"]
+[connection signal="timeout" from="IFlashTimer" to="." method="_on_IFlashTimer_timeout"]

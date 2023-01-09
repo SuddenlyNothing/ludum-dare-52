@@ -89,9 +89,10 @@ func _get_transition(delta: float):
 				return states.fall
 		states.attack:
 			if parent.attack_animation_follow_through_finished:
-				if parent.is_on_wall():
+				if parent.is_on_wall() and \
+						not parent.prevent_cling_cast.is_colliding():
 					return states.wall_cling
-				return states.walk
+				return states.fall
 		states.hurt:
 			if parent.hurt_timer.is_stopped():
 				return states.fall
@@ -143,7 +144,7 @@ func _exit_state(old_state, new_state: String) -> void:
 		states.walk:
 			pass
 		states.jump:
-			if new_state != states.fall:
+			if new_state != states.fall and new_state != states.attack:
 				parent.reset_air_jumps()
 		states.fall:
 			if new_state != states.jump:

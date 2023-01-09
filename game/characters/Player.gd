@@ -33,7 +33,7 @@ var climb_friction: float = max_climb_speed / climb_friction_time
 var climb_jump_force: float = max_move_speed
 var climb_ledge_force: float = 170
 
-var attack_speed: float = 500.0
+var attack_speed: float = 400.0
 var attack_hit_speed: float = 1000.0
 
 var hurt_speed: float = 100
@@ -76,6 +76,11 @@ onready var prevent_cling_cast := $PreventClingCast
 onready var wall_cling_stay_timer := $WallClingStayTimer
 onready var hurt_timer := $HurtTimer
 onready var attack_delay_timer := $AttackDelayTimer
+onready var player_states := $PlayerStates
+onready var i_timer := $ITimer
+onready var i_flash_timer := $IFlashTimer
+onready var hitbox_collision := $Flip/Hitbox/CollisionShape2D
+onready var hurtbox_collision := $Hurtbox/CollisionShape2D
 
 
 func _process(delta: float) -> void:
@@ -83,6 +88,21 @@ func _process(delta: float) -> void:
 	set_y_input()
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer.start()
+
+
+func hit(dir: int) -> void:
+	if not i_timer.is_stopped():
+		return
+	set_collisions_disabled(true)
+	i_flash_timer.start()
+	i_timer.start()
+	hurt_dir = dir
+	player_states.call_deferred("set_state", "hurt")
+
+
+func set_collisions_disabled(disabled: bool) -> void:
+	hitbox_collision.call_deferred("set_disabled", disabled)
+	hurtbox_collision.call_deferred("set_disabled", disabled)
 
 
 func move(delta: float, is_on_ground: bool, is_falling: bool) -> void:
@@ -244,7 +264,11 @@ func wall_move(delta: float) -> void:
 
 
 func attack_move(delta: float) -> void:
-	apply_velocity(delta, false)
+	if hittables.empty():
+		velocity = velocity.normalized() * attack_speed
+	else:
+		velocity = velocity.normalized() * attack_hit_speed
+	velocity = move_and_slide(velocity, up)
 	if is_on_wall():
 		attack_animation_follow_through_finished = true
 #	if is_on_wall():
@@ -367,3 +391,13 @@ func _on_Hitbox_body_exited(body: Node) -> void:
 	if not body.is_in_group("hittable"):
 		return
 	hittables.erase(body)
+
+
+func _on_ITimer_timeout() -> void:
+	set_collisions_disabled(false)
+	i_flash_timer.stop()
+	anim_sprite.show()
+
+
+func _on_IFlashTimer_timeout() -> void:
+	anim_sprite.visible = not anim_sprite.visible
