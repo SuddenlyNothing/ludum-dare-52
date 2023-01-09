@@ -16,7 +16,7 @@ var dragons := [
 var bone_offset := Vector2(0, -10)
 var t: SceneTreeTween
 var downed := false
-var dragon_ind := 1
+var dragon_ind := 0
 
 onready var dragon := get_node(dragon_path)
 onready var player := get_node(player_path)
