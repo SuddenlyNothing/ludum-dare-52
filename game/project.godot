@@ -56,7 +56,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="ludum dare 52"
+config/name="Feed Your Dragon"
 run/main_scene="res://scenes/Demo.tscn"
 config/icon="res://icon.png"
 

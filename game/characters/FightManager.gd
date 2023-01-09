@@ -1,6 +1,7 @@
 extends Node2D
 
 const Bone := preload("res://characters/Bone.tscn")
+const Egg := preload("res://characters/Egg.tscn")
 
 export(NodePath) var player_path
 export(NodePath) var dragon_path
@@ -49,6 +50,12 @@ func connect_dragon() -> void:
 func _on_dragon_died(angered: bool) -> void:
 	if angered:
 		dragon.queue_free()
+		var egg := Egg.instance()
+		egg.position = position
+		get_parent().add_child(egg)
+		dragon = egg
+		connect_dragon()
+		dragon_ind = 0
 	else:
 		death_delay_timer.start()
 
