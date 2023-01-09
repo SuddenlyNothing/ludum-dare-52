@@ -52,9 +52,11 @@ func _enter_state(new_state: String, old_state) -> void:
 		states.down:
 			parent.play_anim("down")
 			parent.down_sfx.play()
+			parent.emit_signal("downed")
 		states.death:
 			parent.play_anim("death")
 			parent.death_sfx.play()
+			parent.set_body_collision_disabled(true)
 
 
 # Called on exiting state.
@@ -63,7 +65,7 @@ func _enter_state(new_state: String, old_state) -> void:
 func _exit_state(old_state, new_state: String) -> void:
 	match old_state:
 		states.idle:
-			pass
+			parent.charge_wait_timer.stop()
 		states.charge:
 			parent.flip()
 			parent.set_hitbox_disabled(true)

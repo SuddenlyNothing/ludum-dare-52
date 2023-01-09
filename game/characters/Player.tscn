@@ -90,7 +90,6 @@ script = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="Flip" instance=ExtResource( 4 )]
 material = SubResource( 27 )
-animation = "death_fall"
 
 [node name="Hitbox" type="Area2D" parent="Flip"]
 collision_layer = 0
@@ -139,6 +138,7 @@ one_shot = true
 
 [node name="JumpBufferTimer" type="Timer" parent="."]
 process_mode = 0
+wait_time = 0.1
 one_shot = true
 
 [node name="WallJumpTimer" type="Timer" parent="."]

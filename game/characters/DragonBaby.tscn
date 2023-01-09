@@ -57,6 +57,7 @@ script = ExtResource( 3 )
 
 [node name="DragonBabyAnimations" parent="Pivot" instance=ExtResource( 1 )]
 material = SubResource( 5 )
+animation = "wake"
 
 [node name="RayCast2D" type="RayCast2D" parent="Pivot"]
 position = Vector2( -25, -6 )
@@ -71,6 +72,9 @@ collision_mask = 2
 position = Vector2( -15.5, -9.5 )
 shape = SubResource( 2 )
 disabled = true
+
+[node name="MouthPos" type="Position2D" parent="Pivot"]
+position = Vector2( -19, -7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -11 )

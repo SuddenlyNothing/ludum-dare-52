@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/ui/health/player_health_under.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/health/player_health_progress.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/ui/health/player_hurt_portrait.png" type="Texture" id=4]
 [ext_resource path="res://assets/ui/health/player_portrait.png" type="Texture" id=5]
 [ext_resource path="res://characters/PlayerHUD.gd" type="Script" id=6]
+[ext_resource path="res://assets/ui/coin.png" type="Texture" id=7]
 
 [sub_resource type="Shader" id=1]
 resource_local_to_scene = true
@@ -47,7 +48,7 @@ animations = [ {
 [node name="PlayerHUD" type="CanvasLayer"]
 script = ExtResource( 6 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 251.0 ],
+"_edit_horizontal_guides_": [ 251.0, 5.0 ],
 "_edit_vertical_guides_": [ 5.0 ]
 }
 
@@ -74,3 +75,30 @@ material = SubResource( 5 )
 position = Vector2( 21, 22 )
 frames = SubResource( 4 )
 animation = "normal"
+
+[node name="M" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="H" type="HBoxContainer" parent="M"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 443.0
+margin_bottom = 37.0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="M/H"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="M/H"]
+margin_left = 36.0
+margin_top = 8.0
+margin_right = 44.0
+margin_bottom = 24.0
+text = "0"

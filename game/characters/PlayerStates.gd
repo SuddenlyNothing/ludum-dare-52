@@ -10,6 +10,7 @@ func _ready() -> void:
 	add_state("attack")
 	add_state("hurt")
 	add_state("death")
+	add_state("throw")
 	call_deferred("set_state", "fall")
 
 
@@ -40,6 +41,8 @@ func _state_logic(delta: float) -> void:
 			parent.death_move(delta)
 			if parent.is_on_floor():
 				parent.play_anim("death")
+		states.throw:
+			pass
 
 
 func _get_transition(delta: float):
@@ -101,6 +104,8 @@ func _get_transition(delta: float):
 		states.hurt:
 			if parent.hurt_timer.is_stopped():
 				return states.fall
+		states.throw:
+			pass
 	return null
 
 
@@ -152,6 +157,9 @@ func _enter_state(new_state: String, old_state) -> void:
 				parent.hurt_sfx.play()
 			else:
 				parent.death_sfx.play()
+		states.throw:
+			parent.play_anim("throw")
+			parent.velocity = Vector2()
 
 
 func _exit_state(old_state, new_state: String) -> void:
@@ -177,6 +185,8 @@ func _exit_state(old_state, new_state: String) -> void:
 				parent.wall_jump()
 				parent.jump_sfx.play()
 		states.attack:
+			if new_state == states.wall_cling:
+				parent.reset_air_jumps()
 			parent.attacking = false
 			parent.attack_delay_timer.start()
 		states.hurt:

@@ -219,6 +219,6 @@ animations = [ {
 [node name="PlayerAnimations" type="AnimatedSprite"]
 position = Vector2( 0, -17 )
 frames = SubResource( 1 )
-animation = "cling"
+animation = "idle"
 speed_scale = 2.0
 offset = Vector2( 8, 0 )

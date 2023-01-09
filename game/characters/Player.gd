@@ -2,6 +2,8 @@ extends KinematicBody2D
 class_name BasicPlatformer
 # warnings-disable
 
+signal threw
+
 var jump_height: float = 85.0
 var jump_time_to_peak: float = 0.25
 var jump_time_to_descent: float = 0.27
@@ -122,6 +124,13 @@ func hit(dir: int) -> void:
 		player_states.call_deferred("set_state", "hurt")
 	else:
 		player_states.call_deferred("set_state", "death")
+
+
+func throw(dir: int) -> void:
+	if sign(dir) != sign(flip.scale.x):
+		flip.scale.x *= -1
+	player_states.call_deferred("set_state", "throw")
+	throw_sfx.play()
 
 
 func set_collisions_disabled(disabled: bool) -> void:
@@ -411,6 +420,8 @@ func _on_AnimatedSprite_animation_finished() -> void:
 		attacking = false
 	if anim_sprite.animation == "attack_finish" and hittables.empty():
 		attack_animation_follow_through_finished = true
+	if anim_sprite.animation == "throw":
+		player_states.call_deferred("set_state", "fall")
 
 
 func _on_AnimatedSprite_frame_changed() -> void:
@@ -420,6 +431,8 @@ func _on_AnimatedSprite_frame_changed() -> void:
 	if anim_sprite.animation == "walk":
 		if anim_sprite.frame == 1 or anim_sprite.frame == 2:
 			step_sfx.play()
+	if anim_sprite.animation == "throw" and anim_sprite.frame == 2:
+		emit_signal("threw")
 
 
 func _on_Hitbox_body_entered(body: Node) -> void:
