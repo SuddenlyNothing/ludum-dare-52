@@ -28,7 +28,7 @@ var ground_friction: float = max_move_speed / ground_friction_time
 var max_climb_speed: float = 150
 var climb_acceleration_time: float = 0.1
 var climb_acceleration: float = max_climb_speed / climb_acceleration_time
-var climb_friction_time: float = 0.05
+var climb_friction_time: float = 0.03
 var climb_friction: float = max_climb_speed / climb_friction_time
 var climb_jump_force: float = max_move_speed
 var climb_ledge_force: float = 170
@@ -82,6 +82,17 @@ onready var i_flash_timer := $IFlashTimer
 onready var hitbox_collision := $Flip/Hitbox/CollisionShape2D
 onready var hurtbox_collision := $Hurtbox/CollisionShape2D
 
+onready var attack_sfx := $Audio/AttackSFX
+onready var death_sfx := $Audio/DeathSFX
+onready var hurt_sfx := $Audio/HurtSFX
+onready var jump_sfx := $Audio/JumpSFX
+onready var land_sfx := $Audio/LandSFX
+onready var step_sfx := $Audio/StepSFX
+onready var throw_sfx := $Audio/ThrowSFX
+onready var cling_sfx := $Audio/ClingSFX
+onready var wall_jump_sfx := $Audio/WallJumpSFX
+onready var wall_move_sfx := $Audio/WallMoveSFX
+
 
 func _process(delta: float) -> void:
 	set_x_input()
@@ -101,7 +112,7 @@ func hit(dir: int) -> void:
 
 
 func set_collisions_disabled(disabled: bool) -> void:
-	hitbox_collision.call_deferred("set_disabled", disabled)
+#	hitbox_collision.call_deferred("set_disabled", disabled)
 	hurtbox_collision.call_deferred("set_disabled", disabled)
 
 
@@ -252,6 +263,8 @@ func apply_wall_acceleration(delta: float) -> void:
 		return
 	if y_input > 0 and velocity.y > max_climb_speed:
 		return
+	if not wall_move_sfx.playing:
+		wall_move_sfx.play()
 	velocity.y = clamp(velocity.y + climb_acceleration * y_input * delta,
 			-max_climb_speed, max_climb_speed)
 
@@ -369,6 +382,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
 		anim_sprite.play(queue_animation)
 	if anim_sprite.animation == "attack":
 		attack_animation_finished = true
+		attacking = false
 	if anim_sprite.animation == "attack_finish" and hittables.empty():
 		attack_animation_follow_through_finished = true
 
@@ -377,6 +391,9 @@ func _on_AnimatedSprite_frame_changed() -> void:
 	if anim_sprite.animation == "land" and queue_animation == "walk" and \
 			anim_sprite.frame >= 1:
 		anim_sprite.play(queue_animation)
+	if anim_sprite.animation == "walk":
+		if anim_sprite.frame == 1 or anim_sprite.frame == 2:
+			step_sfx.play()
 
 
 func _on_Hitbox_body_entered(body: Node) -> void:

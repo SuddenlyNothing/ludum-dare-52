@@ -108,6 +108,7 @@ func _enter_state(new_state: String, old_state) -> void:
 			parent.play_anim("walk")
 			parent.attacked = false
 		states.jump:
+			parent.jump_sfx.play()
 			parent.play_anim("jump")
 			parent.jump()
 		states.fall:
@@ -120,7 +121,9 @@ func _enter_state(new_state: String, old_state) -> void:
 			parent.wall_jump_timer.stop()
 			parent.wall_cling_stay_timer.start()
 			parent.attacked = false
+			parent.cling_sfx.play()
 		states.attack:
+			parent.attack_sfx.play()
 			parent.play_anim("attack")
 			if old_state == states.wall_cling:
 				parent.prev_x_input = sign(parent.wall_dir.x)
@@ -132,6 +135,7 @@ func _enter_state(new_state: String, old_state) -> void:
 			parent.attacking = true
 			parent.add_hittables()
 		states.hurt:
+			parent.hurt_sfx.play()
 			parent.play_anim("hurt")
 			parent.set_hurt_velocity()
 			parent.hurt_timer.start()
@@ -151,6 +155,7 @@ func _exit_state(old_state, new_state: String) -> void:
 				parent.reset_air_jumps()
 			if new_state == states.idle or new_state == states.walk:
 				parent.play_anim("land")
+				parent.land_sfx.play()
 		states.wall_cling:
 			if new_state == states.fall:
 				if parent.velocity.y < 0 and parent.y_input < 0:
@@ -162,5 +167,7 @@ func _exit_state(old_state, new_state: String) -> void:
 				parent.attack_delay_timer.start()
 				parent.attacking = false
 				parent.attack()
+			else:
+				parent.attacked_hittables.clear()
 		states.hurt:
 			pass
