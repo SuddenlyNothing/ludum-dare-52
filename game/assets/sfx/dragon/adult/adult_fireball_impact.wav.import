@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/adult_fireball_impact.wav-2b1642acd7a7ddd2f288379c30ed5663.sample"
+
+[deps]
+
+source_file="res://assets/sfx/dragon/Adult/adult_fireball_impact.wav"
+dest_files=[ "res://.import/adult_fireball_impact.wav-2b1642acd7a7ddd2f288379c30ed5663.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

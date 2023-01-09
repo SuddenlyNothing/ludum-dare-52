@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/baby_knockout02.wav-15ba95a417b1c9dafe2ba27da89cbd95.sample"
+
+[deps]
+
+source_file="res://assets/sfx/dragon/Baby/baby_knockout02.wav"
+dest_files=[ "res://.import/baby_knockout02.wav-15ba95a417b1c9dafe2ba27da89cbd95.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

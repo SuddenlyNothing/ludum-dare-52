@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/teen_knockout02.wav-288d7fa230c97b795e40c8555d8e102b.sample"
+
+[deps]
+
+source_file="res://assets/sfx/dragon/Teen/teen_knockout02.wav"
+dest_files=[ "res://.import/teen_knockout02.wav-288d7fa230c97b795e40c8555d8e102b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
