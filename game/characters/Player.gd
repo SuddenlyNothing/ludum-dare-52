@@ -392,6 +392,13 @@ func can_stop_cling() -> bool:
 	return wall_cling_stay_timer.is_stopped()
 
 
+func hit_hittable(hittable: Node) -> void:
+	reset_air_jumps()
+	attacked = false
+	hittable.hit(sign(velocity.x))
+	attacked_hittables[hittable] = 1
+
+
 func stop_jump() -> void:
 	if stopped_jump:
 		return
@@ -439,8 +446,7 @@ func _on_Hitbox_body_entered(body: Node) -> void:
 	if not body.is_in_group("hittable"):
 		return
 	if attacking:
-		body.hit(sign(velocity.x))
-		attacked_hittables[body] = 1
+		hit_hittable(body)
 	hittables[body] = 0
 
 
@@ -458,3 +464,17 @@ func _on_ITimer_timeout() -> void:
 
 func _on_IFlashTimer_timeout() -> void:
 	anim_sprite.visible = not anim_sprite.visible
+
+
+func _on_Hitbox_area_entered(area: Area2D) -> void:
+	if not area.is_in_group("hittable"):
+		return
+	if attacking:
+		hit_hittable(area)
+	hittables[area] = 0
+
+
+func _on_Hitbox_area_exited(area: Area2D) -> void:
+	if not area.is_in_group("hittable"):
+		return
+	hittables.erase(area)
