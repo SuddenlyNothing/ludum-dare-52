@@ -1,6 +1,7 @@
 extends Area2D
 
 var height := 0
+var platform: Node = null
 
 onready var sprite := $Sprite
 onready var collision_shape := $CollisionShape2D
@@ -13,4 +14,6 @@ func _ready() -> void:
 
 
 func hit(dir: int) -> void:
+	if platform:
+		platform.fall()
 	queue_free()

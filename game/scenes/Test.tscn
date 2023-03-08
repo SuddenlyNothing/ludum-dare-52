@@ -12,4 +12,4 @@ tile_data = PoolIntArray( 65523, 0, 1, 65524, 0, 1, 65525, 0, 1, 65526, 0, 1, 65
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="Interactables" parent="." instance=ExtResource( 3 )]
-tile_data = PoolIntArray( -589810, 1, 0, -458743, 0, 0, -393207, 0, 0, -393202, 1, 0, -327671, 0, 0, -262135, 0, 0, -196599, 0, 0, -196594, 1, 0, -131063, 0, 0, -65527, 0, 0 )
+tile_data = PoolIntArray( -720879, 0, 0, -655343, 0, 0, -589807, 0, 0, -524271, 0, 0, -458735, 2, 0, -393207, 0, 0, -327671, 0, 0, -262135, 2, 0 )
